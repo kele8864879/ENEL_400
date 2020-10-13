@@ -1,0 +1,41 @@
+CREATE TABLE user(
+	user_id INT AUTO_INCREMENT,
+	email varchar (255) NOT NULL,
+	username varchar (30) NOT NULL,	
+	password varchar (30) NOT NULL,
+	avatar varchar (255) NOT NULL,
+	date_Time datetime,
+	logged_in bool NOT NULL,
+	PRIMARY KEY (user_id) 
+);
+
+CREATE TABLE Control_Panel(
+	control_id INT AUTO_INCREMENT,
+	user_id varchar (30) NOT NULL,
+	temperature varchar (30) NOT NULL,
+	light varchar (30) NOT NULL,
+	humidity varchar (30) NOT NULL,
+	video varchar (255) NOT NULL,
+	Date_Time datetime,
+	PRIMARY KEY (control_id),
+	FOREIGN KEY (user_id) REFERENCES user (user_id)
+);
+
+CREATE TABLE login(
+	login_id INT AUTO_INCREMENT,
+	user_id varchar (30) NOT NULL,	
+	login_date_Time datetime,
+	logout_date_Time datetime,
+	status bool NOT NULL,
+	PRIMARY KEY (login_id),
+	FOREIGN KEY (user_id) REFERENCES user (user_id)
+);
+
+CREATE TABLE view_page(
+	view_id INT AUTO_INCREMENT,
+	user_id varchar (255) NOT NULL,	
+	control_id varchar (255) NOT NULL,
+	PRIMARY KEY (view_id),
+	FOREIGN KEY (user_id) REFERENCES user (user_id),
+	FOREIGN KEY (control_id) REFERENCES Control_Panel (control_id)
+);
