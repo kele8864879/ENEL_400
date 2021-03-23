@@ -284,7 +284,20 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void data_receive()
+{
+	                       strcpy(cliBufferRX,"53.2,199,25.6");
+	                       char delims[] = ",";
+	                       char *result;
+	                       char *result1;
+						   char *result2;
+	                       result = strtok(cliBufferRX, delims );
+	                       set_value=atof(result);
+	                       result1 = strtok( NULL, delims );
+	                       set_value=atof(result1);
+	                       result2 = strtok( NULL, delims );
+	                       set_value=atof(result2);
+}
 /* USER CODE END 4 */
 
 /**
